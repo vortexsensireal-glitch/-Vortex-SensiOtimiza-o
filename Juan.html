@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b12">
+<title>VORTEX GAME BOOST — 10.000 funções</title>
+<style>
+:root{--bg:#080b12;--panel:#121a27;--line:#29374b;--red:#ff3155;--cyan:#35ddff;--muted:#9aabc0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#382039,transparent 48%),var(--bg);color:#f5f8ff;font-family:Arial,sans-serif}
+header{text-align:center;padding:26px 15px 20px;background:#0c111c;border-bottom:1px solid var(--line)}
+.kicker{color:var(--cyan);font-size:11px;letter-spacing:3px;font-weight:bold}.logo{font-size:27px;font-weight:900;margin:10px 0}.logo span{color:var(--red)}.sub{color:var(--muted);font-size:12px;line-height:1.5;max-width:600px;margin:auto}
+main{max-width:900px;margin:auto;padding:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:14px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.metric{background:#0a111c;border:1px solid var(--line);border-radius:11px;text-align:center;padding:11px 5px}.metric b{display:block;font-size:21px}.metric small{color:var(--muted);font-size:10px}
+h2{font-size:16px;margin:0 0 11px}.actions{display:flex;gap:8px;flex-wrap:wrap}button{border:0;border-radius:10px;padding:11px 13px;font-weight:bold;color:white;background:var(--red);cursor:pointer}.secondary{background:#29384e}.cyan{background:#087f9d}button:disabled{opacity:.4}
+.progress{height:7px;background:#29374b;border-radius:8px;overflow:hidden;margin-top:12px}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--cyan));transition:width .15s}
+.notice{font-size:12px;line-height:1.55;color:#f4dba5;background:#251e13;border:1px solid #67502c;padding:12px;border-radius:12px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.tools input{flex:1;min-width:150px;background:#090f19;border:1px solid var(--line);border-radius:9px;color:white;padding:10px}
+.list{border-top:1px solid var(--line)}.item{display:flex;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid #263247;min-height:48px}.num{width:36px;color:var(--cyan);font-size:11px;flex:0 0 36px}.name{flex:1;font-size:12px}.state{font-size:10px;color:var(--muted);width:42px;text-align:right}
+.switch{width:44px;height:25px;position:relative;flex:0 0 44px}.switch input{opacity:0;width:0;height:0}.track{position:absolute;inset:0;background:#39465a;border-radius:30px;cursor:pointer}.track:before{content:"";position:absolute;width:17px;height:17px;left:4px;top:4px;background:white;border-radius:50%;transition:.18s}.switch input:checked+.track{background:#08a5c6}.switch input:checked+.track:before{transform:translateX(19px)}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:var(--muted)}select{background:#0a111d;border:1px solid var(--line);color:white;border-radius:8px;padding:9px}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:20px}
+@media(max-width:440px){.logo{font-size:23px}.grid{gap:5px}.metric b{font-size:18px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="kicker">PAINEL GAMER • EDIÇÃO ESPECIAL</div>
+ <div class="logo">⚡ VORTEX <span>GAME BOOST</span> ⚡</div>
+ <p class="sub">10.000 opções de preparação para suas sessões de Free Fire, com controle geral para ligar ou desligar todas de uma vez.</p>
+</header>
+<main>
+ <section class="panel">
+  <div class="grid">
+   <div class="metric"><b>10.000</b><small>FUNÇÕES NO PAINEL</small></div>
+   <div class="metric"><b id="active">0</b><small>SELECIONADAS</small></div>
+   <div class="metric"><b id="pct">0%</b><small>ATIVADAS</small></div>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+ </section>
+ <section class="panel">
+  <h2>🚀 Controle geral</h2>
+  <div class="actions">
+   <button id="enable">⚡ ATIVAR TODAS AS 10.000</button>
+   <button class="secondary" id="disable">DESLIGAR TODAS</button>
+  </div>
+  <p class="sub" style="margin:10px 0 0;text-align:left">O botão altera o estado dos 10.000 controles deste painel de uma só vez.</p>
+ </section>
+ <div class="notice"><b>Importante:</b> este é um painel HTML de organização. Mesmo ativando todos os controles, a página não consegue mudar o FPS, liberar RAM de outros aplicativos, reduzir o ping, alterar arquivos do Free Fire ou modificar o Android em segundo plano. Os controles não aplicam otimizações reais no aparelho. Para ajustes reais, use as configurações oficiais do celular e do jogo.</div>
+ <section class="panel">
+  <h2>🎮 Lista de funções</h2>
+  <div class="tools">
+   <input id="search" type="search" placeholder="Buscar função pelo nome ou número">
+   <select id="pageSize" aria-label="Itens por página"><option value="50">50 por página</option><option value="100" selected>100 por página</option><option value="200">200 por página</option></select>
+  </div>
+  <div class="list" id="list"></div>
+  <div class="pager">
+   <button class="secondary" id="prev">Anterior</button>
+   <span id="pageInfo">Página 1</span>
+   <button class="secondary" id="next">Próxima</button>
+  </div>
+ </section>
+ <footer>VORTEX GAME BOOST • 10.000 controles locais • Começam todos desligados</footer>
+</main>
+<script>
+const TOTAL=10000;
+const categories=[
+ "Preparação da partida","Foco e concentração","Conferência de conexão","Configurações do jogo",
+ "Cuidados com o aparelho","Organização de aplicativos","Bateria e temperatura",
+ "Áudio e tela","Treino e controles","Revisão pós-partida"
+];
+const templates=[
+"Conferir preparação antes da partida","Lembrar de verificar estabilidade da rede",
+"Revisar configuração disponível no jogo","Conferir espaço livre no aparelho",
+"Verificar atualização pela loja oficial","Conferir notificações antes de jogar",
+"Revisar brilho confortável da tela","Conferir áudio e saída de som",
+"Fazer pausa se o aparelho aquecer","Revisar controles no modo de treino",
+"Conferir bateria antes da sessão","Fechar manualmente apps não utilizados",
+"Evitar downloads durante a partida","Conferir qualidade gráfica escolhida",
+"Anotar mudanças feitas nas configurações","Revisar conexão Wi-Fi ou dados móveis",
+"Conferir se o jogo está atualizado","Fazer backup de arquivos importantes",
+"Revisar permissões dos aplicativos","Encerrar a sessão pelo menu do jogo"
+];
+const states=new Uint8Array(TOTAL);
+let page=0,query="";
+const list=document.getElementById('list');
+function labelFor(n){const cat=categories[Math.floor((n-1)/1000)];const task=templates[(n-1)%templates.length];return cat+" • "+task+" • opção "+n.toLocaleString('pt-BR')}
+function count(){let n=0;for(let i=0;i<TOTAL;i++)n+=states[i];document.getElementById('active').textContent=n.toLocaleString('pt-BR');document.getElementById('pct').textContent=(n/TOTAL*100).toFixed(1).replace('.',',')+'%';document.getElementById('bar').style.width=(n/TOTAL*100)+'%'}
+function render(){
+ const size=Number(document.getElementById('pageSize').value);
+ const maxPage=Math.max(0,Math.ceil(TOTAL/size)-1);page=Math.min(page,maxPage);
+ let start=page*size,end=Math.min(TOTAL,start+size);
+ if(query){
+  const matches=[];
+  for(let i=0;i<TOTAL;i++){const label=labelFor(i+1).toLowerCase();if(label.includes(query)||String(i+1).includes(query))matches.push(i)}
+  const pageMatches=matches.slice(page*size,(page+1)*size);
+  start=pageMatches.length?pageMatches[0]:0;
+  list.replaceChildren();
+  pageMatches.forEach(i=>list.append(makeRow(i)));
+  document.getElementById('pageInfo').textContent=matches.length?`Resultados ${page*size+1}–${page*size+pageMatches.length} de ${matches.length}`:'Nenhum resultado';
+  document.getElementById('prev').disabled=page===0;
+  document.getElementById('next').disabled=(page+1)*size>=matches.length;
+ }else{
+  list.replaceChildren();
+  const frag=document.createDocumentFragment();
+  for(let i=start;i<end;i++)frag.append(makeRow(i));
+  list.append(frag);
+  document.getElementById('pageInfo').textContent=`Página ${page+1} de ${Math.ceil(TOTAL/size)} • ${start+1}–${end}`;
+  document.getElementById('prev').disabled=page===0;
+  document.getElementById('next').disabled=end>=TOTAL;
+ }
+}
+function makeRow(i){
+ const row=document.createElement('div');row.className='item';
+ const num=document.createElement('span');num.className='num';num.textContent='#'+(i+1).toLocaleString('pt-BR');
+ const name=document.createElement('span');name.className='name';name.textContent=labelFor(i+1);
+ const status=document.createElement('span');status.className='state';status.textContent=states[i]?'LIGADA':'DESLIGADA';
+ const lab=document.createElement('label');lab.className='switch';
+ const input=document.createElement('input');input.type='checkbox';input.checked=!!states[i];input.setAttribute('aria-label','Alternar função '+(i+1));
+ const track=document.createElement('span');track.className='track';
+ input.addEventListener('change',()=>{states[i]=input.checked?1:0;status.textContent=states[i]?'LIGADA':'DESLIGADA';count()});
+ lab.append(input,track);row.append(num,name,status,lab);return row;
+}
+document.getElementById('enable').onclick=()=>{states.fill(1);render();count()};
+document.getElementById('disable').onclick=()=>{states.fill(0);render();count()};
+document.getElementById('prev').onclick=()=>{if(page>0){page--;render()}};
+document.getElementById('next').onclick=()=>{page++;render()};
+document.getElementById('pageSize').onchange=()=>{page=0;render()};
+document.getElementById('search').oninput=e=>{query=e.target.value.trim().toLowerCase();page=0;render()};
+render();count();
+</script>
+</body>
+  </html>
